@@ -28,9 +28,8 @@ void add(Dictionary dict, char* str);
 // ispisuje sve rijeci i broj pojavljivanja svake rijeci
 void print(Dictionary dict);
 
-// briöe cijeli rjeËnik
+// bri≈°e cijeli rje√®nik
 void destroy(Dictionary dict);
 Dictionary filterDictionary(Dictionary indict, int (*filter)(Word* w));
 int filter(Word* w);
-bool za_while_petlje;
 #endif
