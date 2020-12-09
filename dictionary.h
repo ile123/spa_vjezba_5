@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include  <stdbool.h> 
 
 //zbog nekog razloga ovaj glupi program se buni kada koristim strdup, pa tribam ovo iskljuciti(nesto vezano za c++ se buni)
 #pragma warning(disable : 4996)
