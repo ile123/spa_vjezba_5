@@ -1,6 +1,6 @@
 #include "dictionary.h"
 
-bool za_while_petlje = true;
+
 Dictionary create()
 {
     Dictionary rjecnik = (Word*)malloc(sizeof(Word));
@@ -21,17 +21,21 @@ void add(Dictionary dict, char* str)
     novi->count = 1;
     novi->next = NULL;
     //ovako je petlja trajna i nikada nece prestat
-    while (za_while_petlje==true)
+    while (1)
     {
+
         //HVALA JEBENOM BOGU RADI NAPOKKON!!!!!!!!!!!!!
         if (temp->next == NULL)
         {
+            //ovdje se crasha kada idem oslobodit zbog nekog razloga
             temp->next = novi;
             return;
         }
         else if (strcmp(temp->next->word,str)==0)
         {
             temp->next->count++;
+            free(novi->word);
+            free(novi);
             return;
         }
         else if (strcmp(temp->next->word, str) > 0)
@@ -53,8 +57,7 @@ void add(Dictionary dict, char* str)
 //radi i ovo
 void print(Dictionary dict)
 {
-    Dictionary temp = dict;
-    temp = temp->next;
+    Dictionary temp = dict->next;
     printf("*****************************Novi Rjecnik*****************************\n");
     while (temp != NULL)
     {
@@ -89,13 +92,13 @@ int filter(Word* w)
 Dictionary filterDictionary(Dictionary indict, int (*filter)(Word* w))
 {
     //oba tribaju biti dictionary zbog nekog razloga?
-    Dictionary temp = indict;
-    Dictionary novi = (Word*)malloc(sizeof(Word));
+    Dictionary temp = indict,novi;
     while (temp->next != NULL) {
         if (filter(temp->next) == 0)
         {
             novi = temp->next;
             temp->next = novi->next;
+            free(novi->word);
             free(novi);
         }
         else
@@ -103,6 +106,4 @@ Dictionary filterDictionary(Dictionary indict, int (*filter)(Word* w))
             temp = temp->next;
         }
     }
-    indict = temp;
-    return indict;
 }
