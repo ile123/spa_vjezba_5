@@ -23,7 +23,7 @@ void add(Dictionary dict, char* str)
 	//ovako je petlja trajna i nikada nece prestat
 	while (1)
 	{
-
+           //hvala jebenom bogu radi napokon!
 		if (temp->next == NULL)
 		{
 			//ovdje se crasha kada idem oslobodit zbog nekog razloga
